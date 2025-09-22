@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class DataAccess{
+    - {static} DataAccess instance
+    - List<SanPham> sps
+    - DataAccess()
+    + {static} DataAccess getInstance
+    + void add(SanPham)
+    + void delete(SanPham)
+    + void update(SanPham)
+    + void display()
+}
+
+class SanPham{
+    + String masanpham
+    + String tensanpham
+    + int soluong
+    + float dongia
+}
+
+DataAccess *--> SanPham:sps
+
+
+@enduml

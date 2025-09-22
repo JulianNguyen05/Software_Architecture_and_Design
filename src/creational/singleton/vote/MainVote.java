@@ -12,7 +12,7 @@ public class MainVote {
         trongdepzai.vote(Candidate.JUMP);
 
         Election.getInstance().printRes();
-        trongdepzai.vote(Candidate.JUMP);
+        trongdepzai.vote(Candidate.BIDEN );
         Election.getInstance().printRes();
     }
 }
