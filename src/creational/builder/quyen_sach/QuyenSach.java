@@ -34,17 +34,17 @@ public class QuyenSach {
         String tacGia;
         List<String> dscc = new ArrayList<>();
 
-        public Builder buildTuaDe(String tuaDe){
+        public Builder setTuaDe(String tuaDe){
             this.tuaDe = tuaDe;
             return this;
         }
 
-        public Builder buildSoTrang(int soTrang){
+        public Builder setSoTrang(int soTrang){
             this.soTrang = soTrang;
             return this;
         }
 
-        public Builder buildTacGia(String tacGia){
+        public Builder setTacGia(String tacGia){
             this.tacGia = tacGia;
             return this;
         }
@@ -54,7 +54,7 @@ public class QuyenSach {
             return this;
         }
 
-        public Builder buildDscc(List<String> dscc) {
+        public Builder setDscc(List<String> dscc) {
             this.dscc.addAll(dscc);
             return this;
         }
