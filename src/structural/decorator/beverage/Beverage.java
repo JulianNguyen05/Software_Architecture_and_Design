@@ -1,7 +1,7 @@
 package structural.decorator.beverage;
 
 public abstract class Beverage {
-    protected String description;
+    String description;
 
     public Beverage(String description) {
         this.description = description;

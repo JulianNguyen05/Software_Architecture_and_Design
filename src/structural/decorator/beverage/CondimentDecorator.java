@@ -1,7 +1,7 @@
 package structural.decorator.beverage;
 
 public abstract class CondimentDecorator extends Beverage{
-    Beverage beverage;
+    Beverage beverage; // Đối tượng được decorate
 
     public CondimentDecorator(String description, Beverage beverage) {
         super(description);
