@@ -10,13 +10,13 @@ public class MainBeverage {
         System.out.println(beverage.getDescription());
         System.out.println(beverage.cost());
 
-        beverage = new Milk("Sửa ông Thọ", beverage);
+        beverage = new Milk("Sữa ông Thọ", beverage);
         beverage = new Soy("Đậu nành HL", 10, beverage);
         System.out.println("\nLần 2");
         System.out.println(beverage.getDescription());
         System.out.println(beverage.cost());
 
-        beverage = new Milk("Sửa Vinamilk", beverage);
+        beverage = new Milk("Sữa Vinamilk", beverage);
         System.out.println("\nLần 3");
         System.out.println(beverage.getDescription());
         System.out.println(beverage.cost());
