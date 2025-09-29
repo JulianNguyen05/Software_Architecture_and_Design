@@ -22,7 +22,5 @@ public class MainBeverage {
         System.out.println("\nLần 3");
         System.out.println(beverage.getDescription());
         System.out.println(beverage.cost());
-
-
     }
 }
