@@ -12,6 +12,16 @@ public class HoaDon {
         this.cthds = b.cthds;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(header.toString());
+        for (var cthd: cthds) {
+            builder.append("\n").append(cthd.toString());
+        }
+        return builder.toString();
+    }
+
     public static class Builder{
         HoaDonHeader header;
         List<CTHD> cthds = new ArrayList<>();
