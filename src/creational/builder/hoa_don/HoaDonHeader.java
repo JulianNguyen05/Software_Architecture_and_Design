@@ -5,6 +5,8 @@ import java.time.DateTimeException;
 public class HoaDonHeader {
     String maHD, tenKH, ngayBan;
 
+
+
     public HoaDonHeader(String maHD, String tenKH, String ngayBan) {
         this.maHD = maHD;
         this.tenKH = tenKH;

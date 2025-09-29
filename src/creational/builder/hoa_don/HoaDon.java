@@ -27,13 +27,11 @@ public class HoaDon {
         List<CTHD> cthds = new ArrayList<>();
 
         public Builder buildHeader(String maHD, String ngayBan, String tenKH){
-            header.maHD = maHD;
-            header.ngayBan = ngayBan;
-            header.tenKH = tenKH;
+            header = new HoaDonHeader(maHD, ngayBan, tenKH);
             return this;
         }
 
-        public Builder addHeader(String sanPham, int donGia, int soLuong, float chietKhau){
+        public Builder addCTHD(String sanPham, int donGia, int soLuong, float chietKhau){
             cthds.add(new CTHD(sanPham, donGia, soLuong, chietKhau));
             return this;
         }
