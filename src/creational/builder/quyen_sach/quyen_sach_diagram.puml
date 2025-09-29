@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Builder{
+    String tuaDe, tacGia
+    int soTrang
+    List<String> chuongs
+    + Builder setTuaDe(String tuaDe)
+    + Builder setTacGia(String tacGia)
+    + Builder setSoTrang(int soTrang)
+    + Builder addChuong(String chuong)
+    QuyenSach build()
+}
+class QuyenSach{
+    String tuaDe, tacGia
+    int soTrang
+    List<String> chuongs
+    - QuyenSach(Builder b)
+    + String toString()
+}
+
+Builder --> QuyenSach
+
+@enduml
