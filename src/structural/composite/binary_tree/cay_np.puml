@@ -2,11 +2,11 @@
 'https://plantuml.com/class-diagram
 abstract Nut{
     int giaTri
-    + void duyet()
-    + void themTrai(Nut n)
-    + void themPhai(Nut n)
-    + void xoaTrai()
-    + void xoaPhai()
+    + {abstract} void duyet()
+    + {abstract}  void themTrai(Nut n)
+    + {abstract} void themPhai(Nut n)
+    + {abstract} void xoaTrai()
+    + {abstract} void xoaPhai()
 }
 
 class NutLa
