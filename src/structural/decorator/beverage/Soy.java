@@ -1,13 +1,15 @@
 package structural.decorator.beverage;
 
 public class Soy extends CondimentDecorator{
-    public Soy(String description, Beverage beverage) {
+    private int price;
+    public Soy(String description, int price, Beverage beverage) {
         super(description, beverage);
+        this.price = price;
     }
 
     @Override
     public int cost() {
-        return super.cost() + 6;
+        return super.cost() + price;
     }
 
     @Override
