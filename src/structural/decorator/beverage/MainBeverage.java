@@ -6,12 +6,14 @@ public class MainBeverage {
 
         beverage = new Milk("Sữa cô gái HL", beverage);
         beverage = new Soy("Đậu nành TS", 6, beverage);
+        beverage = new Whip("Bông muối", beverage);
         System.out.println("Lần 1");
         System.out.println(beverage.getDescription());
         System.out.println(beverage.cost());
 
         beverage = new Milk("Sữa ông Thọ", beverage);
         beverage = new Soy("Đậu nành HL", 10, beverage);
+        beverage = new Whip("Kem", beverage);
         System.out.println("\nLần 2");
         System.out.println(beverage.getDescription());
         System.out.println(beverage.cost());
