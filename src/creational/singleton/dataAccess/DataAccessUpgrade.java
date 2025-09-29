@@ -1,4 +1,4 @@
-package creational.singleton.sanpham;
+package creational.singleton.dataAccess;
 
 import java.util.ArrayList;
 import java.util.Dictionary;

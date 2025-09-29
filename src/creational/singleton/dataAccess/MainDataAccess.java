@@ -1,4 +1,4 @@
-package creational.singleton.sanpham;
+package creational.singleton.dataAccess;
 
 public class MainDataAccess {
     public static void main(String[] args) {
