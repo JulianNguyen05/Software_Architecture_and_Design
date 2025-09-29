@@ -3,11 +3,13 @@ package creational.singleton.shape;
 public class Circle extends Shape{
     private static Circle instance;
 
-    private Circle(){}
+    public Circle(String brush, String paper, String frame) {
+        super(brush, paper, frame);
+    }
 
     public static Circle getInstance() {
         if(instance == null) {
-            instance = new Circle();
+            instance = new Circle("Default Brush", "Default Paper", "Default Frame");
         }
         return instance;
     }
