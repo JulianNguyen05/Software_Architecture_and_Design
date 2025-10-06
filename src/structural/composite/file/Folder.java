@@ -11,11 +11,25 @@ public class Folder extends AbstractFile{
     }
 
     @Override
+//    public String getTreeFolder(){
+//        StringBuilder builder = new StringBuilder();
+//        builder.append(this.name);
+//        for (var f:files){
+//            builder.append("\n").append(f.getTreeFolder());
+//        }
+//
+//        return builder.toString();
+//    }
+
     public String getTreeFolder(){
         StringBuilder builder = new StringBuilder();
-        builder.append(this.name);
-        for (var f:files){
-            builder.append("\n").append(f.getTreeFolder());
+        builder.append(preStr).
+                append(this.name);
+        for (AbstractFile f : files){
+            f.preStr = this.preStr + ".";
+            builder.append("\n").
+                    append(f.getTreeFolder());
+            f.preStr = "";
         }
 
         return builder.toString();

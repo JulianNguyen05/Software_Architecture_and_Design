@@ -3,6 +3,7 @@ package structural.composite.file;
 public abstract class AbstractFile {
     String name, dateCreated;
     String path;
+    String preStr = "";
 
     public AbstractFile(String name, String dateCreated){
         this.name = name;

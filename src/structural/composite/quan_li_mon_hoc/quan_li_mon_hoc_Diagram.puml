@@ -1,0 +1,80 @@
+@startuml
+title "Composite Pattern - Quản lý môn học"
+
+abstract class AbstractItem {
+    - String ten
+    + AbstractItem(String ten)
+    + AbstractItem them(AbstractItem item)
+    + AbstractItem xoa(AbstractItem item)
+    + int getHocPhi()
+    + int getSoTC()
+    + void hienThi(String prefix)
+}
+
+class KhoaHoc {
+    - List<AbstractItem> items
+    + KhoaHoc(String ten)
+    + AbstractItem them(AbstractItem item)
+    + AbstractItem xoa(AbstractItem item)
+    + int getHocPhi()
+    + int getSoTC()
+    + void hienThi(String prefix)
+}
+
+class NamHoc {
+    - List<AbstractItem> items
+    + NamHoc(String ten)
+    + AbstractItem them(AbstractItem item)
+    + AbstractItem xoa(AbstractItem item)
+    + int getHocPhi()
+    + int getSoTC()
+    + void hienThi(String prefix)
+}
+
+class KyHoc {
+    - List<AbstractItem> items
+    + KyHoc(String ten)
+    + AbstractItem them(AbstractItem item)
+    + AbstractItem xoa(AbstractItem item)
+    + int getHocPhi()
+    + int getSoTC()
+    + void hienThi(String prefix)
+}
+
+class MonHoc {
+    - int soTC
+    - int hocPhiMoiTC
+    + MonHoc(String ten, int soTC, int hocPhiMoiTC)
+    + int getHocPhi()
+    + int getSoTC()
+    + void hienThi(String prefix)
+}
+
+AbstractItem <|-- KhoaHoc
+AbstractItem <|-- NamHoc
+AbstractItem <|-- KyHoc
+AbstractItem <|-- MonHoc
+
+KhoaHoc *-- NamHoc
+NamHoc *-- KyHoc
+KyHoc *-- MonHoc
+
+note top of AbstractItem
+    Lớp trừu tượng cha:
+    - Định nghĩa chung cho tất cả thành phần.
+    - Cung cấp phương thức thêm, xóa, hiển thị.
+end note
+
+note right of MonHoc
+    Lớp lá (Leaf):
+    - Không chứa phần tử con.
+    - Tính học phí = tín chỉ * học phí mỗi tín chỉ.
+end note
+
+note bottom of KhoaHoc
+    Lớp gốc (Composite):
+    - Chứa nhiều Năm học.
+    - Tính tổng học phí, tín chỉ của toàn khóa.
+end note
+
+@enduml
