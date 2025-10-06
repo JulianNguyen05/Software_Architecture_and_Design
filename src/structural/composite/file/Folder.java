@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Folder extends AbstractFile{
     List<AbstractFile> files = new ArrayList<>();
-    String name, dateCreated, path;
 
     public Folder(String name, String dateCreated, List<AbstractFile> files, String name1, String dateCreated1, String path) {
         super(name, dateCreated);
@@ -21,7 +20,12 @@ public class Folder extends AbstractFile{
 
     @Override
     public String getTreeFolder() {
-        return "";
+        StringBuilder builder = new StringBuilder();
+        builder.append(name).append("\n");
+        for (AbstractFile file : files) {
+            builder.append("   ").append(file.getTreeFolder()).append("\n");
+        }
+        return builder.toString();
     }
 
     @Override
@@ -31,11 +35,11 @@ public class Folder extends AbstractFile{
 
     @Override
     public void addItem(AbstractFile item) {
-
+        files.add(item);
     }
 
     @Override
     public void removeItem(AbstractFile item) {
-
+        files.remove(item);
     }
 }
