@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract AbstractFile{
+    String name, dateCreated
+    String path
+    + AbstractFile(String name, String dateCreated)
+    + {abstract} String getTreeFolder()
+    + String getPath()
+    + {abstract} addItem(AbstractFile item)
+    + {abstract} removeItem(AbstractFile item)
+}
+
+class File{}
+
+class Folder{}
+
+AbstractFile <|-- File
+AbstractFile <|-- Folder
+Folder *--> AbstractFile : files
+
+note top of AbstractFile
+    Hàm khởi taọ:
+        - Khởi tạo 2 biến name và dateCreated
+        - gán giá trị name cho path
+end note
+
+note left of AbstractFile
+    Trả về giá trị biến path
+end note
+
+note left of File
+    getTreeFolder: trả về biến name
+end note
+@enduml

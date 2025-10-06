@@ -7,13 +7,14 @@ public abstract class AbstractFile {
     public AbstractFile(String name, String dateCreated){
         this.name = name;
         this.dateCreated = dateCreated;
-    }
-
-    public abstract String getTreeFolder();
+        this.path = name;
+   }
 
     public String getPath() {
         return path;
     }
+
+    public abstract String getTreeFolder();
 
     public abstract void addItem(AbstractFile item);
 

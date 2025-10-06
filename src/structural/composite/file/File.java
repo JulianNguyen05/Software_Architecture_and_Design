@@ -18,7 +18,7 @@ public class File extends AbstractFile {
 
     @Override
     public String getTreeFolder() {
-        return this.path + "/" + this.name;
+        return this.path;
     }
 
 }
