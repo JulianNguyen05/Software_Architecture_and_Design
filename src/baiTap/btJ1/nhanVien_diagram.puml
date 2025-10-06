@@ -1,0 +1,23 @@
+@startuml
+
+class NhanVien{
+    - String ten, tuoi, diaChi;
+    - double tienLuong;
+    - int tongSoGioLam;
+    + NhanVien();
+    + NhanVien(String ten, String tuoi, String diaChi, double tienLuong, int tongSoGioLam);
+    + String getTen();
+    + String getTuoi();
+    + String getDiaChi();
+    + double getTienLuong();
+    + int getTongSoGioLam();
+    + void setTen(String ten);
+    + void setTuoi(String tuoi);
+    + void setDiaChi(String diaChi);
+    + void setTienLuong(double tienLuong);
+    + void setTongSoGioLam(int tongSoGioLam);
+    - String toString();
+    - double tinhThuong();
+}
+
+@enduml
