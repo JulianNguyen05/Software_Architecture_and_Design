@@ -6,14 +6,6 @@ import java.util.List;
 public class Folder extends AbstractFile{
     List<AbstractFile> files = new ArrayList<>();
 
-    public Folder(String name, String dateCreated, List<AbstractFile> files, String name1, String dateCreated1, String path) {
-        super(name, dateCreated);
-        this.files = files;
-        this.name = name1;
-        this.dateCreated = dateCreated1;
-        this.path = path;
-    }
-
     public Folder(String name, String dateCreated) {
         super(name, dateCreated);
     }
