@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract ChuyenXe{
+    + String maSoChuyen, hoTenTaiXe, soXe
+    + double doanhThu
+    + {abstract}void xuatThongTin()
+}
+
+class QuanLyChuyenXe{
+    - List<ChuyenXe> listChuyenXe
+    + void themChuyenXe(ChuyenXe cx)
+    + void xuatDanhSach()
+    + double tinhDoanhThuNoiThanh()
+    + double tinhDoanhThuNgoaiThanh()
+    + double TongDoanhThu()
+}
+
+class XeNoiThanh{
+    - int soTuyen, soKmDiDuoc
+}
+
+class XeNgoaiThanh{
+    - String noiDen, soNgayDi;
+}
+
+ChuyenXe <|-- XeNgoaiThanh
+ChuyenXe <|-- XeNoiThanh
+ChuyenXe *-- QuanLyChuyenXe : chuyenXes
+
+@enduml
