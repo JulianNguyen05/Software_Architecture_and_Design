@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface IQLDS{
+    + int them(CaNhan p)
+    + int xoa(String ten)
+    + void inDS()
+}
+
+abstract CaNhan{
+    - String hoTen, diaChi, sdt
+    - int tuoi
+    + String HienThiTT()
+}
+
+class QLDS{}
+
+class HocSinh{
+    - String lop, nangKhieu
+}
+
+class GiaoVien{
+    - String monDay, toBoMoN
+}
+
+class LopHoc{
+    + int themHocSinh(HocSinh hs)
+    + int themGVGD(GiaoVien gv)
+    + int inDSHS()
+    + int inDSGVGD()
+}
+
+CaNhan "0..*" <-- "0..1" QLDS : dsCaNhan
+QLDS "0..1" <-- "0..1" LopHoc : qldsGVGD
+QLDS "0..1" <-- "0..1" LopHoc : qldsHS
+GiaoVien "0..*" <-- "0..1" LopHoc : giaoVienGD
+GiaoVien "0..1" <-- "0..1" LopHoc : giaoVienCN
+HocSinh "0..*" <-- "0..1" LopHoc : hocSinh
+
+CaNhan <|-- HocSinh
+CaNhan <|-- GiaoVien
+IQLDS <|.. QLDS
+
+@enduml
