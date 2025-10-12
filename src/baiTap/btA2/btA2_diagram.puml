@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class MyStringBuilder{
+    - str : String
+    + addString(s : String) : MyStringBuilder
+    + addFloat(f : float) : MyStringBuilder
+    + addBool(b : boolean) : MyStringBuilder
+    + toString() : String
+}
+
+@enduml

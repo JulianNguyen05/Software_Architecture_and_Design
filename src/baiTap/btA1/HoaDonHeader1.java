@@ -1,24 +1,20 @@
-package creational.builder.hoa_don;
+package baiTap.btA1;
 
-import java.time.DateTimeException;
+public class HoaDonHeader1 {
+    private String maHD, ngayBan, tenKH;
 
-public class HoaDonHeader {
-    String maHD, tenKH, ngayBan;
-
-
-
-    public HoaDonHeader(String maHD, String tenKH, String ngayBan) {
+    public HoaDonHeader1(String maHD, String ngayBan, String tenKH) {
         this.maHD = maHD;
-        this.tenKH = tenKH;
         this.ngayBan = ngayBan;
+        this.tenKH = tenKH;
     }
 
     @Override
     public String toString() {
         return "HoaDonHeader1{" +
                 "maHD='" + maHD + '\'' +
-                ", tenKH='" + tenKH + '\'' +
                 ", ngayBan='" + ngayBan + '\'' +
+                ", tenKH='" + tenKH + '\'' +
                 '}';
     }
 
@@ -30,19 +26,19 @@ public class HoaDonHeader {
         this.maHD = maHD;
     }
 
-    public String getTenKH() {
-        return tenKH;
-    }
-
-    public void setTenKH(String tenKH) {
-        this.tenKH = tenKH;
-    }
-
     public String getNgayBan() {
         return ngayBan;
     }
 
     public void setNgayBan(String ngayBan) {
         this.ngayBan = ngayBan;
+    }
+
+    public String getTenKH() {
+        return tenKH;
+    }
+
+    public void setTenKH(String tenKH) {
+        this.tenKH = tenKH;
     }
 }

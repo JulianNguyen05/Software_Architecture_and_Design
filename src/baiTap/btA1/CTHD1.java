@@ -1,15 +1,14 @@
-package creational.builder.hoa_don;
+package baiTap.btA1;
 
-public class CTHD {
-    String sanPham;
-    int donGia;
-    int soLuong;
-    float chietKhau;
+public class CTHD1 {
+    private String sanPham;
+    private int soLuong;
+    private  double donGia, chietKhau;
 
-    public CTHD(String sanPham, int donGia, int soLuong, float chietKhau) {
+    public CTHD1(String sanPham, int soLuong, double donGia, double chietKhau) {
         this.sanPham = sanPham;
-        this.donGia = donGia;
         this.soLuong = soLuong;
+        this.donGia = donGia;
         this.chietKhau = chietKhau;
     }
 
@@ -17,8 +16,8 @@ public class CTHD {
     public String toString() {
         return "CTHD1{" +
                 "sanPham='" + sanPham + '\'' +
-                ", donGia=" + donGia +
                 ", soLuong=" + soLuong +
+                ", donGia=" + donGia +
                 ", chietKhau=" + chietKhau +
                 '}';
     }
@@ -31,14 +30,6 @@ public class CTHD {
         this.sanPham = sanPham;
     }
 
-    public int getDonGia() {
-        return donGia;
-    }
-
-    public void setDonGia(int donGia) {
-        this.donGia = donGia;
-    }
-
     public int getSoLuong() {
         return soLuong;
     }
@@ -47,11 +38,19 @@ public class CTHD {
         this.soLuong = soLuong;
     }
 
-    public float getChietKhau() {
+    public double getDonGia() {
+        return donGia;
+    }
+
+    public void setDonGia(double donGia) {
+        this.donGia = donGia;
+    }
+
+    public double getChietKhau() {
         return chietKhau;
     }
 
-    public void setChietKhau(float chietKhau) {
+    public void setChietKhau(double chietKhau) {
         this.chietKhau = chietKhau;
     }
 }
