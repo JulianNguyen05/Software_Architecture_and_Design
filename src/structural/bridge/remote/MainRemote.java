@@ -9,6 +9,7 @@ public class MainRemote {
             ar.volumeUp();
         }
 
-
+        ar.mute();
+        ar.mute();
     }
 }

@@ -8,6 +8,7 @@ public class AdvancedRemote extends Remote {
     }
 
     public void mute() {
+        System.out.println("===MUTE===");
         if(device.isEnabled()) {
             if (device.getVolume() == 0) {
                 device.setVolume(currentVolume);

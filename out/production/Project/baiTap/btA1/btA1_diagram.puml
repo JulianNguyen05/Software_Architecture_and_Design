@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/class-diagram
+title Builder Pattern - HoaDon Example
+
+class HoaDonHeader {
+    - maHD: String
+    - ngayBan: String
+    - tenKH: String
+}
+
+class CTHD {
+    - sanPham: String
+    - soLuong: int
+    - donGia: double
+    - chietKhau: double
+}
+
+class HoaDon {
+    - header: HoaDonHeader
+    - cthdList: List<CTHD>
+}
+
+class HoaDonBuilder {
+    - header: HoaDonHeader
+    - cthdList: List<CTHD>
+    + addHeader(maHD: String, ngayBan: String, tenKH: String): HoaDonBuilder
+    + addCTHD(sanPham: String, soLuong: int, donGia: double, chietKhau: double): HoaDonBuilder
+    + build(): HoaDon
+}
+
+'HoaDon được tạo bởi Builder
+HoaDonBuilder --> HoaDon : tạo ra
+
+'HoaDon chứa các thành phần
+HoaDon --> HoaDonHeader
+HoaDon --> "1..*" CTHD : cthdList
+
+@enduml

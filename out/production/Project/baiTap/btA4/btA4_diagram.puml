@@ -1,0 +1,24 @@
+@startuml
+
+class Election {
+    - static instance : Election
+    - votesTrump : int
+    - votesBiden : int
+    - votedUsers : Set<String>
+    - Election()
+    + static getInstance() : Election
+    + vote(userName : String, candidate : String) : void
+    + showResult() : void
+}
+
+class User {
+    - name : String
+    + User(name : String)
+    + vote(candidate : String) : void
+}
+
+
+User --> Election : uses (vote)
+Election --> "1" Election : Singleton instance
+
+@enduml
