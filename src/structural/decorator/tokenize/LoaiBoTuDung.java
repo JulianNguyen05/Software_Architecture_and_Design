@@ -1,5 +1,6 @@
 package structural.decorator.tokenize;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,9 +13,15 @@ public class LoaiBoTuDung extends TokenDecorator{
 
     @Override
     public List<String> tokenize() {
-        List<String> t = super.tokenize();
-        tuDungs.removeAll(tuDungs);
+        List<String> tokens = super.tokenize();
+        List<String> ketQua = new ArrayList<>();
 
-        return t;
+        for (String s : tokens) {
+            if (!tuDungs.contains(s.toLowerCase())) {
+                ketQua.add(s);
+            }
+        }
+
+        return ketQua;
     }
 }
