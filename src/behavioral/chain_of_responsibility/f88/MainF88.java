@@ -5,26 +5,18 @@ public class MainF88 {
         // Tạo các nhân viên
         NhanVienChoVayF88 nvA = new NhanVienChoVayF88("Nhân viên", "trongdepzai", 5_000_000);
         NhanVienChoVayF88 nvB = new NhanVienChoVayF88("Phó phòng", "Julian", 10_000_000);
-        NhanVienChoVayF88 nvC = new NhanVienChoVayF88("Chưởng phòng", "TrongHT", 20_000_000);
-        NhanVienChoVayF88 nvD = new NhanVienChoVayF88("Phó chú tịch", "Trong", 40_000_000);
-        ChuTich chuTich = new ChuTich("Chủ tịch", "Phạm Văn Chủ", 500_000_000);
+        NhanVienChoVayF88 nvC = new NhanVienChoVayF88("Phó chú tịch", "Trong", 40_000_000);
+        ChuTich chuTich = new ChuTich("Chủ tịch", "Phạm Văn Chủ", 50_000_000);
 
         nvA.capTren(nvB)
                 .capTren(nvC)
-                .capTren(nvD)
-                .capTren(chuTich);
+                        .capTren(chuTich);
 
         System.out.println("\n--- Thử khoản vay 5 triệu ---");
         nvA.duyetChoVay(5_000_000);
 
         System.out.println("\n--- Thử khoản vay 10 triệu ---");
         nvA.duyetChoVay(10_000_000);
-
-        System.out.println("\n--- Thử khoản vay 20 triệu ---");
-        nvA.duyetChoVay(20_000_000);
-
-        System.out.println("\n--- Thử khoản vay 40 triệu ---");
-        nvA.duyetChoVay(40_000_000);
 
         System.out.println("\n--- Thử khoản vay 45 triệu ---");
         nvA.duyetChoVay(45_000_000);
