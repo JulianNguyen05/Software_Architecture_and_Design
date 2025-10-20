@@ -21,8 +21,8 @@ class CTHD{
 
 }
 
-Builder --> HoaDon
 HoaDon --> HoaDonHeader : header
+Builder --> HoaDon
 HoaDon *--> CTHD : cthds
 Builder *--> CTHD : cthds
 
