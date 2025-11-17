@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class MyStream <T>{
+    + void addEvent(T t)
+    + void addListener(MyStreamListener listener)
+    + void removeListener(MyStreamListener listener)
+}
+
+interface MyStreamListener <T>{
+    + void listen(T t)
+}
+
+class Cilent{}
+
+MyStream <-- Cilent : stream
+MyStream o--> MyStreamListener : listeners
+MyStreamListener <|.. Cilent
+
+@enduml
