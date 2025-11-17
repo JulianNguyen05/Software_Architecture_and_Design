@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class ATM{
+    + void receiveCard(ATM_Listetner account)
+    + void returnCard()
+    + void withDraw(int amount)
+}
+interface ATM_Listener{
+    + bool checkBalance(int amount)
+    + void message(int amount, bool b)
+}
+class Account{
+    - int balance
+    + void insertCard()
+    + void receiveCard()
+}
+
+ATM o--> "1" ATM_Listener : account
+ATM_Listener <|.. Account
+Account --> ATM
+
+@enduml
