@@ -5,4 +5,24 @@ public class MySinhVienDB extends ObjectDB<MySinhVien>{
     public int getId(MySinhVien mySinhVien) {
         return mySinhVien.getMaSV();
     }
+
+    @Override
+    MySinhVien findByID(int id) {
+        return super.findByID(id);
+    }
+
+    @Override
+    public void add(MySinhVien mySinhVien) {
+        super.add(mySinhVien);
+    }
+
+    @Override
+    public void update(MySinhVien mySinhVien) {
+        super.update(mySinhVien);
+    }
+
+    @Override
+    public void deleteByID(int id) {
+        super.deleteByID(id);
+    }
 }

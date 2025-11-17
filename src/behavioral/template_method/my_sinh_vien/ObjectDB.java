@@ -8,8 +8,6 @@ public abstract class ObjectDB<T> {
 
     public abstract int getId(T t);
 
-
-
     T findByID(int id){
         for(var t : list){
             if(getId(t) == id)
