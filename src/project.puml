@@ -1,0 +1,75 @@
+@startuml
+digraph AOA {
+  rankdir=LR;
+  node [shape=circle, style=filled, fillcolor=yellow, fontname="Arial", fontsize=12, fixedsize=true, width=0.6];
+  edge [fontname="Arial", fontsize=11, len=1.5];
+
+  // Khai báo các Nút sự kiện (Event Nodes)
+  1 [label="1", fillcolor=lightgreen]; // Bắt đầu
+  2 [label="2"]; // Xong 1.1
+  3 [label="3"]; // Xong 1.2
+  4 [label="4"]; // Xong 2.1
+  5 [label="5"]; // Xong 2.2
+  6 [label="6"]; // Hội tụ thiết kế -> Bắt đầu 2.3
+  7 [label="7"]; // Xong 2.3 -> Bắt đầu 3.1
+  8 [label="8"]; // Xong 3.1 -> Bắt đầu 3.2
+  9 [label="9"]; // Xong 3.2 -> Bắt đầu 3.3
+  10 [label="10"]; // Xong 3.3 -> Bắt đầu 3.4 & 3.5
+  11 [label="11"]; // Xong 3.4 -> Bắt đầu 3.6
+  12 [label="12"]; // Điểm hội tụ xong code (3.5, 3.6, 3.7) -> Bắt đầu 3.8
+  13 [label="13"]; // Xong 3.8 -> Bắt đầu 4.1
+  14 [label="14"]; // Xong 4.1 -> Bắt đầu 4.2 & 4.3
+  15 [label="15"]; // Kết thúc kiểm thử (Xong 4.2 & 4.3)
+  16 [label="16"]; // Xong 5.1
+  17 [label="17"]; // Xong 5.2
+  18 [label="End", fillcolor=lightgreen]; // Đóng dự án
+
+  // --- VẼ CÁC CÔNG VIỆC (MŨI TÊN) ---
+
+  // Giai đoạn 1: Phân tích
+  1 -> 2 [label="1.1 Khảo sát (15)"];
+  2 -> 3 [label="1.2 Phân tích (15)"];
+
+  // Giai đoạn 2: Thiết kế
+  // 2.2 SS 1.2 -> Tức là 2.2 cũng bắt đầu từ sự kiện số 2 (cùng lúc 1.2)
+  2 -> 5 [label="2.2 TK Luồng (15)"];
+  3 -> 4 [label="2.1 TK CSDL (15)"];
+
+  // Gom nhánh: 2.3 cần cả 2.1 và 2.2 xong. Dùng Dummy nối về nút 6
+  4 -> 6 [style=dashed]; // Dummy
+  5 -> 6 [style=dashed]; // Dummy
+  6 -> 7 [label="2.3 TK Giao diện (15)"];
+
+  // Giai đoạn 3: Xây dựng (Code)
+  7 -> 8 [label="3.1 Khởi tạo (10)"];
+  8 -> 9 [label="3.2 Code TK & BM (30)"];
+  9 -> 10 [label="3.3 Code GD (30)"];
+
+  // Tại nút 10: Xong 3.3 -> Bắt đầu 3.4
+  // 3.5 SS 3.4 -> 3.5 cũng bắt đầu từ nút 10
+  10 -> 11 [label="3.4 Code Tiết kiệm (20)"];
+  10 -> 12 [label="3.5 Code Tra cứu (20)"];
+
+  // Tại nút 11: Xong 3.4 -> Bắt đầu 3.6
+  // 3.7 SS 3.6 -> 3.7 cũng bắt đầu từ nút 11
+  11 -> 12 [label="3.6 Code CSKH (20)"];
+  11 -> 12 [label="3.7 Code T.Báo (15)"];
+
+  // Nút 12 là điểm hội tụ tất cả code xong để làm Tích hợp
+  12 -> 13 [label="3.8 Tích hợp HT (10)"];
+
+  // Giai đoạn 4: Kiểm thử
+  13 -> 14 [label="4.1 Test CN (10)"];
+
+  // 4.3 FF 4.2 -> Cùng kết thúc tại nút 15
+  14 -> 15 [label="4.2 Test BM (10)"];
+  14 -> 15 [label="4.3 Test User (5)"];
+  // Lưu ý: Trong AOA chuẩn, 2 mũi tên song song giữa 2 nút bị cấm.
+  // Nhưng vẽ vậy cho dễ hiểu logic FF. Nếu chuẩn phải chèn thêm nút ảo.
+
+  // Giai đoạn 5: Triển khai
+  15 -> 16 [label="5.1 Viết Tài liệu (10)"];
+  16 -> 17 [label="5.2 Nghiệm thu (5)"];
+  17 -> 18 [label="5.3 Đóng DA (2)"];
+}
+@enduml
