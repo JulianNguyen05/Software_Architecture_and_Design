@@ -5,10 +5,11 @@ public class ATM {
     public int maxWithDraw = 10_000_000;
     IATM_State state;
 
-    public ATM(int balance, int maxWithDraw) {
-        this.balance = balance;
+    public ATM(int maxWithDraw) {
         this.maxWithDraw = maxWithDraw;
+        this.balance = 0;
         changeState();
+        state = new NoMoney();
     }
 
     public IATM_State getState() {
