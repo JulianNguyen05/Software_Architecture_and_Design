@@ -1,62 +1,73 @@
 package creational.state.thueBao;
 
-public class Gold implements IThueBaoState{
+public class Gold implements IThueBaoState {
+
+    private final int CUOC_GOI_MOI_GIAY = 1200 / 60;
+    private final int NGUONG_XUONG_SILVER = 200_000;
+
     @Override
     public void napTienHanlde(int soTien, ThueBao thueBao) {
-        System.out.println("===Trạng thái: Vàng===");
-        System.out.println("==Khuyến mãi: 10%");
-        int tienKhuyenMai = (int)(soTien * 0.1f);
-        int tongTienNap = soTien + tienKhuyenMai;
+        System.out.println("=== Trạng thái: Vàng ===");
+        System.out.println("== Khuyến mãi: 10% ==");
 
-        thueBao.balance += tongTienNap;
+        int tienKM = (int)(soTien * 0.1f);
+        int tongNap = soTien + tienKM;
 
-        System.out.println("Đã nạp: " + soTien + " + " + tienKhuyenMai + " (KM).");
+        thueBao.balance += tongNap;
+
+        System.out.println("Đã nạp: " + soTien + " + " + tienKM + " (KM)");
         System.out.println("Số dư hiện tại: " + thueBao.balance);
+
         thueBao.changeState();
     }
 
     @Override
     public void thucHienCuocGoiHandle(int soGiay, ThueBao thueBao) {
-        int cuocGoi = soGiay*(1200/60);
-        if(thueBao.balance - soGiay*cuocGoi>200_000){
-            thueBao.balance -= soGiay*cuocGoi;
-            System.out.println("===Trạng thái: Vàng===");
-            System.out.println("Số dư: " + thueBao.balance);
-        }else{
-            int tgVang = 0;
-            for(;;){
-                tgVang++;
-                thueBao.balance -= cuocGoi;
-                if(thueBao.balance<=200_000){
-                    break;
-                }
-                thueBao.setState(new Normal());
-                thueBao.thucHienCuocGoi(soGiay - tgVang);
-            }
+        System.out.println("=== Trạng thái: Vàng ===");
+
+        int cuoc = soGiay * CUOC_GOI_MOI_GIAY;
+        thueBao.balance -= cuoc;
+
+        if (thueBao.balance < 0)
+            thueBao.balance = 0;
+
+        System.out.println("Phí cuộc gọi: " + cuoc + "đ");
+        System.out.println("Số dư sau cuộc gọi: " + thueBao.balance + "đ");
+
+        if (thueBao.balance <= NGUONG_XUONG_SILVER) {
+            System.out.println("Số dư dưới 200.000đ → Chuyển sang trạng thái Bạc!");
+            thueBao.setState(new Silver());
         }
     }
 
     @Override
     public void printHandle(ThueBao thueBao) {
-        System.out.println("===Trạng thái: Vàng===");
-        System.out.println("Số dư: " + thueBao.balance);
-        System.out.println("Thời gian gọi còn lại: " + thueBao.thoiGianGoi(thueBao.balance) + " giây");
+        System.out.println("=== Trạng thái: Vàng ===");
+        System.out.println("Số dư: " + thueBao.balance + "đ");
+        System.out.println("Thời gian gọi còn lại: " +
+                thueBao.thoiGianGoi(thueBao.balance) + " giây");
     }
 
     @Override
     public int thoiGianGoiHandle(int soTien, ThueBao tb) {
-        int tgVang = 0;
-        int giaCuoc = 1500/60;
+
         int soDu = soTien;
-        for(;;) {
+        int tgVang = 0;
+
+        while (soDu > NGUONG_XUONG_SILVER) {
+            soDu -= CUOC_GOI_MOI_GIAY;
             tgVang++;
-            soDu -= giaCuoc;
-            if (soDu <= 100_000)
+
+            if (soDu <= NGUONG_XUONG_SILVER)
                 break;
         }
-        tb.setState(new Silver());
-        int tgThuong = tb.thoiGianGoi(soDu);
-        tb.setState(new Gold());
-        return tgThuong + tgVang;
+
+        int tgSilver = soDu / (1500 / 60);
+
+        int soDuCuoi = soDu % (1500 / 60);
+
+        int tgNormal = soDuCuoi / (1800 / 60);
+
+        return tgVang + tgSilver + tgNormal;
     }
 }
