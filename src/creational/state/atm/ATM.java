@@ -2,7 +2,7 @@ package creational.state.atm;
 
 public class ATM {
     public int balance;
-    public int maxWithDraw = 10_000_000;
+    public int maxWithDraw;
     IATM_State state;
 
     public ATM(int maxWithDraw) {
