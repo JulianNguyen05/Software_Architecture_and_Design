@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class GiaiThuong{}
+class GiaiKhuyenKhich
+
+abstract class XoSo {
+    String tenGiai
+    List<String> boSoTrungThuong
+    + {abstract} XoSo thietLapKe(XoSo k)
+    + {abstract} String doVeSo(String veSo)
+}
+
+GiaiThuong --> XoSo : keTiep
+GiaiThuong --|> XoSo
+GiaiKhuyenKhich --|> XoSo
+
+@enduml
