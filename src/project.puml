@@ -1,75 +1,66 @@
 @startuml
-digraph AOA {
-  rankdir=LR;
-  node [shape=circle, style=filled, fillcolor=yellow, fontname="Arial", fontsize=12, fixedsize=true, width=0.6];
-  edge [fontname="Arial", fontsize=11, len=1.5];
+!theme plain
+skinparam componentStyle rectangle
+skinparam roundcorner 10
+skinparam linetype ortho
 
-  // Khai báo các Nút sự kiện (Event Nodes)
-  1 [label="1", fillcolor=lightgreen]; // Bắt đầu
-  2 [label="2"]; // Xong 1.1
-  3 [label="3"]; // Xong 1.2
-  4 [label="4"]; // Xong 2.1
-  5 [label="5"]; // Xong 2.2
-  6 [label="6"]; // Hội tụ thiết kế -> Bắt đầu 2.3
-  7 [label="7"]; // Xong 2.3 -> Bắt đầu 3.1
-  8 [label="8"]; // Xong 3.1 -> Bắt đầu 3.2
-  9 [label="9"]; // Xong 3.2 -> Bắt đầu 3.3
-  10 [label="10"]; // Xong 3.3 -> Bắt đầu 3.4 & 3.5
-  11 [label="11"]; // Xong 3.4 -> Bắt đầu 3.6
-  12 [label="12"]; // Điểm hội tụ xong code (3.5, 3.6, 3.7) -> Bắt đầu 3.8
-  13 [label="13"]; // Xong 3.8 -> Bắt đầu 4.1
-  14 [label="14"]; // Xong 4.1 -> Bắt đầu 4.2 & 4.3
-  15 [label="15"]; // Kết thúc kiểm thử (Xong 4.2 & 4.3)
-  16 [label="16"]; // Xong 5.1
-  17 [label="17"]; // Xong 5.2
-  18 [label="End", fillcolor=lightgreen]; // Đóng dự án
+title System Architecture: MoneyTrackBot (Android + Django)
 
-  // --- VẼ CÁC CÔNG VIỆC (MŨI TÊN) ---
+' --- KHỐI CLIENT (ANDROID) ---
+package "📱 Client Side (Android App)" as Client {
+    component [View Layer\n(Activities / Fragments)] as UI #E1F5FE
+    component [ViewModel Layer\n(LiveData / Logic)] as VM #E1F5FE
+    component [Repository Layer\n(Data Management)] as Repo #E1F5FE
 
-  // Giai đoạn 1: Phân tích
-  1 -> 2 [label="1.1 Khảo sát (15)"];
-  2 -> 3 [label="1.2 Phân tích (15)"];
-
-  // Giai đoạn 2: Thiết kế
-  // 2.2 SS 1.2 -> Tức là 2.2 cũng bắt đầu từ sự kiện số 2 (cùng lúc 1.2)
-  2 -> 5 [label="2.2 TK Luồng (15)"];
-  3 -> 4 [label="2.1 TK CSDL (15)"];
-
-  // Gom nhánh: 2.3 cần cả 2.1 và 2.2 xong. Dùng Dummy nối về nút 6
-  4 -> 6 [style=dashed]; // Dummy
-  5 -> 6 [style=dashed]; // Dummy
-  6 -> 7 [label="2.3 TK Giao diện (15)"];
-
-  // Giai đoạn 3: Xây dựng (Code)
-  7 -> 8 [label="3.1 Khởi tạo (10)"];
-  8 -> 9 [label="3.2 Code TK & BM (30)"];
-  9 -> 10 [label="3.3 Code GD (30)"];
-
-  // Tại nút 10: Xong 3.3 -> Bắt đầu 3.4
-  // 3.5 SS 3.4 -> 3.5 cũng bắt đầu từ nút 10
-  10 -> 11 [label="3.4 Code Tiết kiệm (20)"];
-  10 -> 12 [label="3.5 Code Tra cứu (20)"];
-
-  // Tại nút 11: Xong 3.4 -> Bắt đầu 3.6
-  // 3.7 SS 3.6 -> 3.7 cũng bắt đầu từ nút 11
-  11 -> 12 [label="3.6 Code CSKH (20)"];
-  11 -> 12 [label="3.7 Code T.Báo (15)"];
-
-  // Nút 12 là điểm hội tụ tất cả code xong để làm Tích hợp
-  12 -> 13 [label="3.8 Tích hợp HT (10)"];
-
-  // Giai đoạn 4: Kiểm thử
-  13 -> 14 [label="4.1 Test CN (10)"];
-
-  // 4.3 FF 4.2 -> Cùng kết thúc tại nút 15
-  14 -> 15 [label="4.2 Test BM (10)"];
-  14 -> 15 [label="4.3 Test User (5)"];
-  // Lưu ý: Trong AOA chuẩn, 2 mũi tên song song giữa 2 nút bị cấm.
-  // Nhưng vẽ vậy cho dễ hiểu logic FF. Nếu chuẩn phải chèn thêm nút ảo.
-
-  // Giai đoạn 5: Triển khai
-  15 -> 16 [label="5.1 Viết Tài liệu (10)"];
-  16 -> 17 [label="5.2 Nghiệm thu (5)"];
-  17 -> 18 [label="5.3 Đóng DA (2)"];
+    component "Network Module" as Net #B3E5FC {
+        component [Retrofit Client] as Retrofit
+        note right of Retrofit
+            <b>Base URL Switcher</b>
+            1. Local: http://10.0.2.2:8000
+            2. Prod: https://moneytrackbot.onrender.com
+        end note
+    }
 }
+
+' --- KHỐI LOCAL (DEV ENV) ---
+package "💻 Local Environment (Development)" as LocalEnv {
+    node "Localhost / Emulator" {
+        component [Django Dev Server\n(manage.py runserver)] as DjangoLocal #FFF9C4
+        database "SQLite\n(db.sqlite3)" as DBSQLite #FFF9C4
+    }
+}
+
+' --- KHỐI ONLINE (PRODUCTION) ---
+package "☁️ Production Environment (Render.com)" as ProdEnv {
+    node "Render Cloud" {
+        component [Web Service\n(Gunicorn + Django)] as DjangoProd #C8E6C9
+        database "PostgreSQL\n(Managed DB)" as DBPostgres #C8E6C9
+    }
+}
+
+' --- CÁC MỐI QUAN HỆ (LUỒNG DỮ LIỆU) ---
+
+' 1. Luồng nội bộ Android
+UI --> VM : Quan sát (Observer)
+VM --> Repo : Yêu cầu dữ liệu
+Repo --> Retrofit : Gọi API
+
+' 2. Luồng kết nối Server
+
+' --- Đường đi Local (Nét đứt màu cam) ---
+Retrofit -[#orange,dashed]-> DjangoLocal : <b>Local API Call</b>\n(HTTP / 10.0.2.2)
+DjangoLocal <--> DBSQLite : Read/Write
+
+' --- Đường đi Online (Nét liền màu xanh) ---
+Retrofit -[#green,bold]-> DjangoProd : <b>Production API Call</b>\n(HTTPS / Internet)
+DjangoProd <--> DBPostgres : Read/Write
+
+' --- Chú thích ---
+legend right
+    | Màu sắc | Ý nghĩa |
+    | <#orange> | Luồng Dev (Local) |
+    | <#green> | Luồng Production (Render) |
+    | <#E1F5FE> | Android Components |
+endlegend
+
 @enduml
