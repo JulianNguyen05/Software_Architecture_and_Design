@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface PlayerDataListener {
+    + void listen(PlayerData data)
+}
+
+class PlayerData{
+    - PlayerDataListener listenrs
+    - int thoigian
+    - int countdown
+    - int grade
+
+    + void attach (PlayerDataListener listenrs)
+    + void detach (PlayerDataListener listenrs)
+    + void setData(int thoigian, int countdown, int grade)
+    + void setThoigian(int thoigian)
+    + void setCountdown(int countdown)
+    + void setGrade(int grade)
+}
+
+class Dashboard
+
+PlayerData --> PlayerDataListener : listenrs
+PlayerDataListener <|.. Dashboard
+PlayerData <-- Dashboard : playerData
+
+@enduml

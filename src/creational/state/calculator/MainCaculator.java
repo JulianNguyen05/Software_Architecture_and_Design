@@ -14,5 +14,10 @@ public class MainCaculator {
         calculator.input("*");
         calculator.input("4");
 
+        System.out.println("--- Thực hiện phép tính: 100 / 4 ---");
+        calculator.input("100");
+        calculator.input("/");
+        calculator.input("4");
+
     }
 }
