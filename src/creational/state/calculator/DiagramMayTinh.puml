@@ -1,0 +1,38 @@
+@startuml
+
+interface CalculatorState {
+    handleInput(Calculator context, String input)
+}
+
+class Calculator {
+    - CalculatorState state
+    - double num1
+    - double num2
+    - String operator
+    + Calculator()
+    + setState(CalculatorState state)
+    + input(String data)
+    + output()
+}
+
+class InputState1 {
+}
+
+class InputOperationState {
+}
+
+class InputState2 {
+}
+
+class OperateState {
+}
+
+' Relationships
+CalculatorState <|.. InputState1
+CalculatorState <|.. InputOperationState
+CalculatorState <|.. InputState2
+CalculatorState <|.. OperateState
+
+Calculator --> CalculatorState : state
+
+@enduml
