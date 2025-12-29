@@ -11,7 +11,7 @@ public class MainVeSo {
         List<String> soTu = List.of("9");
 
         XoSo giaiDacBiet = new GiaiThuong("Giải Đặc Biệt", soDacBiet);
-        XoSo giaiKhuyenKhich = new GiaiThuong("Giải Khuyến Khích", soDacBiet);
+        XoSo giaiKhuyenKhich = new GiaiKhuyenKhich("Giải Khuyến Khích", soDacBiet);
         XoSo giaiNhat = new GiaiThuong("Giải Nhất", soNhat);
         XoSo giaiNhi = new GiaiThuong("Giải Nhì", soNhi);
         XoSo giaiBa = new GiaiThuong("Giải Ba", soBa);
